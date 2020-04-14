@@ -19,7 +19,7 @@ button.addEventListener('click', () => { //event listener
 
 const items = document.querySelectorAll('li')
 
-//INSTEAD ASIGN SINGLE LISTENER IN UL
+//INSTEAD ASSIGN SINGLE LISTENER IN UL
 // items.forEach(item => {
 //     item.addEventListener('click', e => {
 //         //console.log(e) //MouseEvent
