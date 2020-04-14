@@ -1,0 +1,1 @@
+//siblings originate from the same node (of DOM tree) and are on the same level 
