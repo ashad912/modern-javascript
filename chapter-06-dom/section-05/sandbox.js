@@ -3,7 +3,7 @@
 //refs to children
 
 const article = document.querySelector('article')
-console.log(article.children) //we need to convert HTML Collection to array
+console.log(article.children) //we need to convert HTML Collection to array - can't use forEach method
 console.log(Array.from(article.children)) //got it
 
 Array.from(article.children).forEach((child) => {
