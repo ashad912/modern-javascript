@@ -1,7 +1,7 @@
 //using bootstrap
 //bootstrap is css and js library
 
-const correctAnswers = ['B', 'B', 'B', 'B', 'B', 'B']
+const correctAnswers = ['B', 'B', 'B', 'B', 'B', 'B', 'B']
 
 const form = document.querySelector('.quiz-form')
 //'absolute' path to span
@@ -14,14 +14,14 @@ const result = document.querySelector('.result')
 
 
 
-
+//clear innerHTML version - hard locate beteween form childs
 const fifthQuestion = {
     question: '5. Do you like The-Net-Ninja?',
     answerA: 'No',
     answerB: 'Yes',
 }
 
-//innerHTML version
+
 form.innerHTML += `
     <div class="my-5">
         <p class="lead font-weight-normal">
@@ -47,7 +47,7 @@ const sixthQuestion = {
     answerB: 'Yes',
 }
 
-//DOM functions version
+//DOM functions version - problem with spacing input <-> label, long to write
 const questionWrapper = document.createElement('div')
 const submit = document.querySelector('form div.text-center')
 
@@ -78,7 +78,6 @@ const createAnswer = (answerText, answerValue) => {
     answerLabel.textContent = answerText
 
     answer.append(answerLabel)
-    
 
     return answer
 
@@ -103,20 +102,54 @@ form.insertBefore(questionWrapper, submit) //insert before submit - cannot do wi
 //append vs appendChild deferences - https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append
 
 
+//mixed - comfortobale to locale, fast to write
+
+const seventhQuestion = {
+    question: '7. Would like to meet The-Net-Ninja?',
+    answerA: 'No',
+    answerB: 'Yes',
+}
+
+const newQuestionWrapper = document.createElement('div')
+newQuestionWrapper.classList.add('my-5')
+
+//outerHTML does not work here
+//If the element has no parent element, setting its outerHTML property will not change it or its descendants. Many browsers will also throw an exception.
+//Also, while the element will be replaced in the document, the variable whose outerHTML property was set will still hold a reference to the original element.
+
+
+newQuestionWrapper.innerHTML = 
+`
+    <p class="lead font-weight-normal">
+        ${seventhQuestion.question}
+    </p>
+    <div class="form-check my-2 text-white-50">
+        <input type="radio" name='q7' value="A" checked>
+        <!-- we don't need a 'for' in label - we are closed in one div-->
+        <label class="form-check-label">${seventhQuestion.answerA}</label>
+    </div>
+    <div class="form-check my-2 text-white-50">
+        <input type="radio" name='q7' value="B">
+        <label class="form-check-label">${seventhQuestion.answerB}</label>
+    </div>
+`
+
+form.insertBefore(newQuestionWrapper, submit)
+
 
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
 
     let score = 0;
-    const userAnswers = [form.q1.value, form.q2.value, form.q3.value, form.q4.value, form.q5.value, form.q6.value]
+    const userAnswers = [form.q1.value, form.q2.value, form.q3.value, form.q4.value, form.q5.value, form.q6.value, form.q7.value]
 
 
     //check answers
 
     userAnswers.forEach((answer, index) => {
         if(answer === correctAnswers[index]){
-            score += (100 / 6);
+            score += (100 / 7);
         }
     })
 
@@ -135,7 +168,7 @@ form.addEventListener('submit', (e) => {
     const timer = setInterval (() => {
         result.querySelector('span').textContent = `${output}%`
         
-        if(output >= score){
+        if(output >= score || output >= 100){
             clearInterval(timer)
         }
         output++;
