@@ -62,5 +62,15 @@ cityForm.addEventListener('submit', (e) =>{
         })
         .catch(e => console.log(e))
 
+    //set local storage
+    localStorage.city = city
+
 })
 
+if(localStorage.city) { //can be undefined
+    updateCity(localStorage.city)
+        .then(data => {
+            updateUI(data)
+        })
+        .catch(e => console.log(e))
+}
