@@ -8,6 +8,8 @@ function greet(){
 }
 
 
+//arrow functions aren't hoisted!!!
+
 
 
 //function expression - cannot be hoisted
@@ -95,3 +97,14 @@ people.forEach((person) => {
 console.log(html)
 
 ul.innerHTML = html //modify DOM - inner: inside ul, outer: with ul start and end tags !!!
+
+
+///scope
+function testFn(){ //function has info about all visible variables before invoke
+    console.log(temp1) //global var
+    //console.log(temp2) //cannot acces before init
+}
+
+let temp1 = 'temp1'
+testFn()
+let temp2 = 'temp2'
