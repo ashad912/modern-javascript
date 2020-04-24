@@ -4,7 +4,7 @@ class User {
         this.username = username
         this.email = email
         this.forbidden = 'private field'
-        this.logout = this.logout.bind(this)
+        //this.logout = this.logout.bind(this)
         
         
     }
@@ -17,8 +17,8 @@ class User {
             isAdmin ? console.log('user is admin') : null
         }
     }
-    logout(){
-        //console.log(this)
+    logout = () => { //for arrow function 'this' DOES NOT CHANGE previous context, but previous context is class object
+        console.log(this)
         console.log(`${this.username} just logged out`)
         this.print('no info, if admin')
     }
@@ -43,9 +43,9 @@ userTwo.login()(true) //method returning function which is called immediately
 //userOne.logout()
 userTwo.logout()
 
-const { logout } = userTwo
+const { logout } = userTwo //here context is changed for standard function
 logout() //logout has no context, we have bind it in class => this.logout = this.logout.bind(this)
-
+        //or use arrow function
 
 //making forbidden as private key - PROXY
 

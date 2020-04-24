@@ -2,7 +2,7 @@ const userOne = {
     username: 'ryu',
     email: 'ryu@thenetninjaj.co.uk',
     login(){
-        console.log('the user logged in')
+        console.log(`${this.username} logged in`)
     },
     logout(){
         console.log('the user logged out')
