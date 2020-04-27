@@ -4,6 +4,8 @@ const details = document.querySelector('.details')
 const time = document.querySelector('img.time')
 const icon = document.querySelector('.icon img')
 
+const forecast = new Forecast()
+
 const updateUI = ({cityDets, weather}) => { //destructuring in param
 
     //const {weather, cityDets} = data //destructuring - can swap the order 
@@ -38,15 +40,6 @@ const updateUI = ({cityDets, weather}) => { //destructuring in param
     }
 }
 
-const updateCity = async (city) => {
-    const cityDets = await getCity(city) //can call because in index.html, forecast.js is invoke earlier
-    const weather = await getWeather(cityDets.Key)
-
-    return {
-        cityDets, //object shorthand notation - only if keyName === valueName
-        weather
-    }
-}
 
 cityForm.addEventListener('submit', (e) =>{
     e.preventDefault()
@@ -56,7 +49,7 @@ cityForm.addEventListener('submit', (e) =>{
     cityForm.reset()
 
     //update ui with new city
-    updateCity(city)
+    forecast.updateCity(city)
         .then(data => {
             updateUI(data)
         })
@@ -68,7 +61,13 @@ cityForm.addEventListener('submit', (e) =>{
 })
 
 if(localStorage.city) { //can be undefined
-    updateCity(localStorage.city)
+
+    forecast.showArrayMethodContext()
+    forecast.showNormalMethodContext()
+    Forecast.showStaticArrayMethodContext() 
+    Forecast.showStaticNormalMethodContext()
+    
+    forecast.updateCity(localStorage.city)
         .then(data => {
             updateUI(data)
         })
