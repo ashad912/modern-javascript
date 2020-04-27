@@ -1,0 +1,17 @@
+.container{
+    max-width: 600px;
+}
+.btn{ /*Bootstrap class with default hover effect */
+    background: #43d9be;
+    color: white;
+    outline: none !important; /*dwarn around elements, outside the borders */
+    box-shadow: none !important; /*overwrites previous styling rules */
+}
+.btn:focus{
+    outline: none !important;
+    
+}
+/*to combat with hover effect */
+/* .btn:hover{
+    color: white;
+} */
