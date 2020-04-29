@@ -1,0 +1,10 @@
+//this file is not used anymore
+
+{
+    "presets": ["@babel/preset-env"]
+}
+
+//install babel loader: npm i babel-loader
+//config 'module' in webpack.config.js
+
+//can delete babel script from 'package.json'
